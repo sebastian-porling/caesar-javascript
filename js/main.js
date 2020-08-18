@@ -1,27 +1,31 @@
-import Ceaser from "./modules/caeser.mjs"
-import {outputElement, textInputElement, stepsInputElement} from "./modules/elements.mjs"
-import {isEmpty, isUndefined} from "./modules/util.mjs"
+import Ceaser from "./modules/caeser.mjs";
+import {
+    outputElement,
+    textInputElement,
+    stepsInputElement,
+} from "./modules/elements.mjs";
+import { isEmpty, isUndefined } from "./modules/util.mjs";
 
 /**
  * Writes the encrypted input to the output box
  */
 window.encrypt = function () {
-    changeOutput(initCaesar().encrypt())
-}
+    changeOutput(initCaesar().encrypt());
+};
 
 /**
  * Writes the decrypted input to the output box
  */
 window.decrypt = function () {
-    changeOutput(initCaesar().decrypt())
-}
+    changeOutput(initCaesar().decrypt());
+};
 
 /**
  * Initializes a caesar object
  */
-function initCaesar(){
+function initCaesar() {
     let [text, steps] = readInput();
-    if (!isUndefined(text, steps)){
+    if (!isUndefined(text, steps)) {
         return new Ceaser(text, steps);
     }
     return new Ceaser();
@@ -31,11 +35,11 @@ function initCaesar(){
  * Reads input from the text and steps feilds
  */
 function readInput() {
-    let [text, steps] = [textInputElement.value, stepsInputElement.value]
-    if(!isEmpty(text, steps)){
+    let [text, steps] = [textInputElement.value, stepsInputElement.value];
+    if (!isEmpty(text, steps)) {
         text = onlyAlphabetCharacters(text);
         steps = toCipherRange(steps);
-        return [text, steps]
+        return [text, steps];
     }
     resetFields();
     return [undefined, undefined];
@@ -43,7 +47,7 @@ function readInput() {
 
 /**
  * Makes the number within the range of 0-25.
- * @param {number} steps 
+ * @param {number} steps
  */
 function toCipherRange(steps) {
     return Math.abs(parseInt(steps)) % 26;
@@ -51,7 +55,7 @@ function toCipherRange(steps) {
 
 /**
  * Returns only the alphabetic chars from string
- * @param {String} text 
+ * @param {String} text
  */
 function onlyAlphabetCharacters(text) {
     return text.toLowerCase().replace(/[^a-z]+/gi, "");

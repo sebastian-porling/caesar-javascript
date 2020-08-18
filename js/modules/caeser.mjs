@@ -1,9 +1,7 @@
-
 /**
  * Class that can encrypt or decrypt Caesar chifer
  */
 export default class Caesar {
-
     constructor(text = "", steps = 0) {
         this.text = text;
         this.steps = steps;
@@ -32,8 +30,14 @@ export default class Caesar {
 function crypt(text = "", steps = 0) {
     const MAX = 123;
     const MIN = 97;
-    return [...text].map(char => char.charCodeAt(0) + steps)
-                    .map(charCode => (charCode < MIN) ? charCode + (MAX-MIN) : charCode)
-                    .map(charCode => (charCode % MAX < MIN) ? (charCode % MAX) + MIN : charCode)
-                    .map(charCode => String.fromCharCode(charCode)).join("")
+    const ifLessThanMinAddDiff = (charCode) =>
+        charCode < MIN ? charCode + (MAX - MIN) : charCode;
+    const ifModMaxLessThanMinAddMin = (charCode) =>
+        charCode % MAX < MIN ? (charCode % MAX) + MIN : charCode;
+    return [...text]
+        .map((char) => char.charCodeAt(0) + steps)
+        .map(ifLessThanMinAddDiff)
+        .map(ifModMaxLessThanMinAddMin)
+        .map((charCode) => String.fromCharCode(charCode))
+        .join("");
 }
