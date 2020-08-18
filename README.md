@@ -2,6 +2,8 @@
 
 This solution is made by [Sebastian Porling](https://github.com/sebastian-porling).
 
+It can be accessed by using the following clicking [here](http://porling.me/caesar-javascript/) or [porling.me/caesar-javascript/](http://porling.me/caesar-javascript/)
+
 ## Motivation and Explanation
 
 I use [Bootstrap Material Design](https://fezvrasta.github.io/bootstrap-material-design/) for the styling of the page page. It is almost the same as normal bootstrap but with some styling tweaks.
